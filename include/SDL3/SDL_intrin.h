@@ -239,11 +239,6 @@ _m_prefetch(void *__P)
 #endif
 
 #else
-/* altivec.h redefining bool causes a number of problems, see bugs 3993 and 4392, so you need to explicitly define SDL_ENABLE_ALTIVEC to have it included. */
-#if defined(__ALTIVEC__) && defined(SDL_ENABLE_ALTIVEC)
-#define SDL_ALTIVEC_INTRINSICS 1
-#include <altivec.h>
-#endif
 #ifndef SDL_DISABLE_NEON
 #  ifdef __ARM_NEON
 #    define SDL_NEON_INTRINSICS 1

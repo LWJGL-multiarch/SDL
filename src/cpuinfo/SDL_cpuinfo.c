@@ -353,7 +353,7 @@ static int CPU_haveAltiVec(void)
     void (*handler)(int sig);
     handler = signal(SIGILL, illegal_instruction);
     if (setjmp(jmpbuf) == 0) {
-        asm volatile("mtspr 256, %0\n\t"
+        __asm__ __volatile__("mtspr 256, %0\n\t"
                      "vand %%v0, %%v0, %%v0" ::"r"(-1));
         altivec = 1;
     }

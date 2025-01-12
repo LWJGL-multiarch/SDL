@@ -43,6 +43,36 @@ static int xinput2_active_touch_count;
 #endif
 #ifdef SDL_VIDEO_DRIVER_X11_XINPUT2_SUPPORTS_GESTURE
 static bool xinput2_gesture_supported;
+#ifdef LWJGL_XIGPE // LWJGL: AlmaLinux 8 is stuck on libXi-devel 1.7.10
+typedef struct {
+  int           type;         /* GenericEvent */
+  unsigned long serial;       /* # of last request processed by server */
+  Bool          send_event;   /* true if this came from a SendEvent request */
+  Display       *display;     /* Display the event was read from */
+  int           extension;    /* XI extension offset */
+  int           evtype;
+  Time          time;
+  int           deviceid;
+  int           sourceid;
+  int           detail;
+  Window        root;
+  Window        event;
+  Window        child;
+  double        root_x;
+  double        root_y;
+  double        event_x;
+  double        event_y;
+  double        delta_x;
+  double        delta_y;
+  double        delta_unaccel_x;
+  double        delta_unaccel_y;
+  double        scale;
+  double        delta_angle;
+  int           flags;
+  XIModifierState     mods;
+  XIGroupState        group;
+} XIGesturePinchEvent;
+#endif
 #endif
 
 /* Opcode returned X11_XQueryExtension

@@ -22,6 +22,12 @@
 
 #ifdef SDL_HAVE_BLIT_N
 
+/* altivec.h redefining bool causes a number of problems, see bugs 3993 and 4392, so you need to explicitly define SDL_ENABLE_ALTIVEC to have it included. */
+#if defined(__ALTIVEC__) && defined(SDL_ENABLE_ALTIVEC)
+#define SDL_ALTIVEC_INTRINSICS 1
+#include <altivec.h>
+#endif
+
 #include "SDL_pixels_c.h"
 #include "SDL_surface_c.h"
 #include "SDL_blit_copy.h"
